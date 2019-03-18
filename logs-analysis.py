@@ -15,6 +15,7 @@ def get_popular_articles():
     return cur.fetchall()
     db.close()
 
+# Function to retrieve 3 most popular authors from database.
 def get_popular_authors():
     # Connect to news database and create a new cursor.
     db = psycopg2.connect("dbname=news")
@@ -27,6 +28,7 @@ def get_popular_authors():
     return cur.fetchall()
     db.close()
 
+# Function to retrieve days where error rates were >1%.
 def get_error_rates():
     # Connect to news database and create a new cursor.
     db = psycopg2.connect("dbname=news")
@@ -38,6 +40,7 @@ def get_error_rates():
     # Return the days with >1% error rates and close the connection to the database.
     return cur.fetchall()
     db.close()
+
 
 print(get_popular_articles())
 print(get_popular_authors())
