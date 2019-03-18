@@ -27,5 +27,18 @@ def get_popular_authors():
     return cur.fetchall()
     db.close()
 
+def get_error_rates():
+    # Connect to news database and create a new cursor.
+    db = psycopg2.connect("dbname=news")
+    cur = db.cursor()
+
+    # Query the popular_authors view to retrieve 3 most popular authors.
+    cur.execute("SELECT * FROM error_rates;")
+
+    # Return the most popular authors and close the connection to the database.
+    return cur.fetchall()
+    db.close()
+
 print(get_popular_articles())
 print(get_popular_authors())
+print(get_error_rates())
