@@ -32,10 +32,10 @@ def get_error_rates():
     db = psycopg2.connect("dbname=news")
     cur = db.cursor()
 
-    # Query the popular_authors view to retrieve 3 most popular authors.
+    # Query the error_rates view to retrieve days with >1% error rates.
     cur.execute("SELECT * FROM error_rates;")
 
-    # Return the most popular authors and close the connection to the database.
+    # Return the days with >1% error rates and close the connection to the database.
     return cur.fetchall()
     db.close()
 
