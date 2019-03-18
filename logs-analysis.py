@@ -21,7 +21,7 @@ def get_popular_authors():
     cur = db.cursor()
 
     # Query the popular_authors view to retrieve 3 most popular authors.
-    cur.execute("")
+    cur.execute("SELECT * FROM popular_authors;")
 
     # Return the most popular authors and close the connection to the database.
     return cur.fetchall()
