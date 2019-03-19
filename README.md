@@ -40,3 +40,53 @@ The most popular authors are:
 Days with error rates >1%:
 * July 17, 2016 - 2.3% errors
 ```
+
+## PostgreSQL views created to query the data
+
+The following views were created in PostgreSQL to simplify the SQL queries in the Python code.
+
+Please use the following queries to recreate the views for yourself:
+
+#### Popular Articles view
+
+```sql
+CREATE VIEW popular_articles AS
+    SELECT articles.title, COUNT(log.path) AS views 
+    FROM articles, log
+    WHERE log.path = format('/article/%s', articles.slug)
+    GROUP BY articles.title
+    ORDER BY views DESC
+    LIMIT 3;
+```
+#### Popular Authors view
+
+```sql
+CREATE VIEW popular_authors AS
+    SELECT authors.name, COUNT(log.path) AS views
+    FROM articles, authors, log
+    WHERE log.path = format('/article/%s', articles.slug) AND authors.id = articles.author
+    GROUP BY authors.name
+    ORDER BY views DESC;
+```
+
+#### Error Rates view
+
+```sql
+CREATE VIEW error_rates AS
+    SELECT totals.day, round(errors.error_count/totals.count_of_codes::numeric * 100, 1)::text || '% errors' AS percent_of_errors
+    FROM (
+        SELECT to_char(date(time), 'FMMonth DD, YYYY') AS day, COUNT(status) AS count_of_codes 
+        FROM log
+        GROUP BY day
+        ORDER BY day
+    ) AS totals
+    JOIN (
+        SELECT to_char(date(time), 'FMMonth DD, YYYY') AS day, COUNT(status) AS error_count
+        FROM log
+        WHERE status = '404 NOT FOUND'
+        GROUP BY day
+        ORDER BY day
+    ) AS errors
+    ON totals.day = errors.day
+    WHERE errors.error_count/totals.count_of_codes::numeric * 100 > 1;
+```
