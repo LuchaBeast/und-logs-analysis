@@ -55,4 +55,11 @@ def retrieve_reports():
     for i in range(len(get_popular_authors())):
         print('*', get_popular_authors()[i][0], '-', get_popular_authors()[i][1])
 
+    print('\n')
+
+    # Iterate over get_error_rates() list and print out results
+    print('Days with error rates >1%:')
+    for i in range(len(get_error_rates())):
+        print('*', get_error_rates()[i][0], '-', get_error_rates()[i][1])
+
 retrieve_reports()
