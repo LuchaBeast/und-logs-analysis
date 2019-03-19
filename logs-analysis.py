@@ -1,6 +1,7 @@
 # Import the psycopg2 module for running PostgreSQL queries.
 import psycopg2
 
+# Function to retrieve all 3 reports
 def retrieve_reports():
     # Function to retrieve 3 most popular articles from database.
     def get_popular_articles():
