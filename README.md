@@ -8,6 +8,8 @@ Running this script will allow you to retrieve the following 3 reports from the 
 - Most popular article authors of all time
 - Days where more than 1% of requests lead to errors
 
+The program uses 3 functions (get_popular_articles(), get_popular_authors(), get_error_rates()) to query the 'news' database and retrieve each report, all of which are nested under a primary retrieve_reports() function which executes the 3 functions and prints out the results.
+
 ## Requirements
 
 - [Python 3](https://www.python.org/downloads/)
