@@ -43,7 +43,7 @@ Days with error rates >1%:
 
 ## PostgreSQL views created to query the data
 
-The following views were created in PostgreSQL to simplify the SQL queries in the Python code.
+The following views were created in the PostgreSQL database to simplify the SQL queries in the Python code.
 
 Please use the following queries to recreate the views for yourself:
 
