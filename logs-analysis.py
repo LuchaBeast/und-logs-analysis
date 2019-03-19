@@ -53,7 +53,8 @@ def retrieve_reports():
     for i in range(len(get_popular_articles())):
         print(
             '*', get_popular_articles()[i][0],
-            '-', get_popular_articles()[i][1])
+            '-', get_popular_articles()[i][1],
+            'views')
 
     print('\n')
 
@@ -62,7 +63,8 @@ def retrieve_reports():
     for i in range(len(get_popular_authors())):
         print(
             '*', get_popular_authors()[i][0],
-            '-', get_popular_authors()[i][1])
+            '-', get_popular_authors()[i][1],
+            'views')
 
     print('\n')
 
