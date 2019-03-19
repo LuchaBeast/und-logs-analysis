@@ -43,8 +43,16 @@ def retrieve_reports():
         return cur.fetchall()
         db.close()
 
-    print("The most popular articles are:")
+    # Iterate over get_popular_articles() list and print out results
+    print('The most popular articles are:')
     for i in range(len(get_popular_articles())):
         print('*',get_popular_articles()[i][0], '-', get_popular_articles()[i][1])
+
+    print('\n')
+
+    # Iterate over get_popular_authors() list and print out results
+    print('The most popular authors are:')
+    for i in range(len(get_popular_authors())):
+        print('*', get_popular_authors()[i][0], '-', get_popular_authors()[i][1])
 
 retrieve_reports()
